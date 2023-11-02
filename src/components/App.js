@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Routes } from "react-router-dom";
 import NavBar from "./NavBar";
 import MoviesPage from "./MoviesPage";
+import Home from "./Home";
 
 function App() {
   const [movies, setMovies] = useState([
@@ -13,14 +14,10 @@ function App() {
   return (
     <div>
       <NavBar />
-      <Switch>
-        <Route path="/movies">
-          <MoviesPage movies={movies} />
-        </Route>
-        <Route exact path="/">
-          <div>Home</div>
-        </Route>
-      </Switch>
+      <Routes>
+        <Route path="/movies/*" element={<MoviesPage movies={movies}></MoviesPage>}></Route>
+        <Route exact path="/" element={<Home></Home>}></Route>
+      </Routes>
     </div>
   );
 }
